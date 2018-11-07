@@ -43,7 +43,7 @@ puts "ロール一覧を取得しています...\n"
 organ = s.user[:organs].find { |o|
   o[:organ_id] == s.user[:organ_id]
 }
-if organ[:is_enabled_for_advanced_security] then
+if organ[:is_enabled_for_advanced_security] == 1 then 
   role_list = resource.invoke(path:'/advanced_security/role/search', data:{role_name: ''})[:roles]
 else
   role_list = resource.invoke path:'/authority/role/list', data:{}

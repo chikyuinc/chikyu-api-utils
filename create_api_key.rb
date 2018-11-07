@@ -10,6 +10,9 @@ puts "パスワードを入力してください\n"
 password = STDIN.noecho &:gets
 password = password.chomp!
 
+# for local server.
+# Chikyu::Sdk::ApiConfig.mode = 'local'
+
 token_name = '__temporary_token__'
 puts "ログインしています...\n"
 t = Chikyu::Sdk::SecurityToken.create token_name, email, password, 300
@@ -37,7 +40,14 @@ api_key_name = api_key_name.chomp!
 resource = Chikyu::Sdk::SecureResource.new s
 
 puts "ロール一覧を取得しています...\n"
-role_list = resource.invoke path:'/authority/role/list', data:{}
+organ = s.user[:organs].find { |o|
+  o[:organ_id] == s.user[:organ_id]
+}
+if organ[:is_enabled_for_advanced_security] then
+  role_list = resource.invoke(path:'/advanced_security/role/search', data:{role_name: ''})[:roles]
+else
+  role_list = resource.invoke path:'/authority/role/list', data:{}
+end
 
 puts "***** 選択可能なロール一覧 *****\n"
 role_list.each { |role|
@@ -59,3 +69,8 @@ puts "********* APIキーが生成されました ***********"
 puts "\n"
 puts api_key.to_json
 puts "\n"
+
+puts "ログアウトしています"
+Chikyu::Sdk::SecurityToken.revoke t[:token_name], t[:login_token], t[:login_secret_token], s
+s.logout
+puts "ログアウトしました"

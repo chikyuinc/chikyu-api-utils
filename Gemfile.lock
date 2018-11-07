@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/chikyuinc/chikyu-sdk-ruby.git
-  revision: 3275d38d6963fa19dda48b4312a8e00ad21630ea
+  revision: 633d37597dc98888ca88a24f44fb1ccd6bf97544
   branch: master
   specs:
     chikyu-sdk (0.1.0)
@@ -12,13 +12,13 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    aws-sdk (2.11.162)
-      aws-sdk-resources (= 2.11.162)
-    aws-sdk-core (2.11.162)
+    aws-sdk (2.11.165)
+      aws-sdk-resources (= 2.11.165)
+    aws-sdk-core (2.11.165)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.11.162)
-      aws-sdk-core (= 2.11.162)
+    aws-sdk-resources (2.11.165)
+      aws-sdk-core (= 2.11.165)
     aws-sigv4 (1.0.3)
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
@@ -37,4 +37,4 @@ DEPENDENCIES
   chikyu-sdk!
 
 BUNDLED WITH
-   1.16.1
+   1.17.1

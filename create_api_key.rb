@@ -51,6 +51,7 @@ end
 
 puts "***** 選択可能なロール一覧 *****\n"
 role_list.each { |role|
+  next if role[:is_admin] == true
   puts "ID=#{role[:_id]} / NAME=#{role[:name]}\n"
 }
 puts "********************************\n"
